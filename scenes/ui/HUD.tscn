@@ -8,6 +8,7 @@ script = ExtResource("scr_hud")
 [node name="Root" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="TopBar" type="HBoxContainer" parent="Root"]
 anchor_right = 1.0
