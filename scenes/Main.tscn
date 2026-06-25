@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://castaway_main"]
+[gd_scene load_steps=5 format=3 uid="uid://castaway_main"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/Island.tscn" id="2_island"]
 [ext_resource type="PackedScene" path="res://scenes/CameraRig.tscn" id="3_camera"]
+[ext_resource type="Script" path="res://scripts/Placement.gd" id="4_placement"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_main")
@@ -10,3 +11,8 @@ script = ExtResource("1_main")
 [node name="Island" parent="." instance=ExtResource("2_island")]
 
 [node name="CameraRig" parent="." instance=ExtResource("3_camera")]
+
+[node name="Placement" type="Node3D" parent="."]
+script = ExtResource("4_placement")
+
+[node name="Buildings" type="Node3D" parent="."]
