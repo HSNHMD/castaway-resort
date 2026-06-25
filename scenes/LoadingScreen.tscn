@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://castaway_loading"]
+
+[ext_resource type="Script" path="res://scripts/LoadingScreen.gd" id="scr_loading"]
+
+[node name="LoadingScreen" type="CanvasLayer"]
+script = ExtResource("scr_loading")
+
+[node name="Root" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BG" type="ColorRect" parent="Root"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.024, 0.118, 0.165, 1)
+
+[node name="Center" type="VBoxContainer" parent="Root"]
+anchor_left = 0.3
+anchor_top = 0.42
+anchor_right = 0.7
+anchor_bottom = 0.62
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Root/Center"]
+text = "Castaway Resort"
+horizontal_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="Root/Center"]
+text = "Loading..."
+horizontal_alignment = 1
+
+[node name="Bar" type="ProgressBar" parent="Root/Center"]
+custom_minimum_size = Vector2(0, 22)
+max_value = 9.0
+value = 0.0

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://castaway_bld_bung"]
+
+[ext_resource type="PackedScene" path="res://assets/models/kenney_nature-kit/Models/GLTF format/tent_detailedClosed.glb" id="1_model"]
+
+[node name="bung" type="Node3D"]
+
+[node name="Model" parent="." instance=ExtResource("1_model")]
