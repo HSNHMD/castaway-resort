@@ -9,7 +9,7 @@ const TAP_THRESHOLD := 8.0
 
 @onready var _game:      Game         = get_parent() as Game
 @onready var _buildings: Node3D       = $"../Buildings"
-@onready var _audio:     AudioManager = get_node_or_null("../AudioManager") as AudioManager
+@onready var _audio:     Node         = get_node_or_null("../AudioManager")
 
 var _touch_start:  Vector2 = Vector2.ZERO
 var _touch_moved:  float   = 0.0
@@ -58,7 +58,7 @@ func _on_tap(screen_pos: Vector2) -> void:
 	var dir    := cam.project_ray_normal(screen_pos)
 
 	var plane  := Plane(Vector3.UP, 0.0)
-	var hit    := plane.intersects_ray(origin, dir)
+	var hit: Variant = plane.intersects_ray(origin, dir)
 	if hit == null:
 		return
 
@@ -82,7 +82,7 @@ func _on_tap(screen_pos: Vector2) -> void:
 	_buildings.add_child(node)
 
 	if _audio != null:
-		_audio.play_place()
+		_audio.call(&"play_place")
 
 	var tween := create_tween()
 	tween.tween_property(node, "scale", Vector3.ONE, 0.25)\

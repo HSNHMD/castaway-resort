@@ -139,8 +139,8 @@ func _connect_dock() -> void:
 	_reclaim_btn.pressed.connect(_on_reclaim_pressed)
 	$Root/BuildDock/ForageBtn.pressed.connect(func(): _game.forage())
 
-	var keys := ["hut","bung","villa","jetty","rest","gen","solar","desal","runway"]
-	var btns := ["HutBtn","BungBtn","VillaBtn","JettyBtn","RestBtn","GenBtn","SolarBtn","DesalBtn","RunwayBtn"]
+	var keys: Array[String] = ["hut","bung","villa","jetty","rest","gen","solar","desal","runway"]
+	var btns: Array[String] = ["HutBtn","BungBtn","VillaBtn","JettyBtn","RestBtn","GenBtn","SolarBtn","DesalBtn","RunwayBtn"]
 	for i in range(keys.size()):
 		var k := keys[i]
 		$Root/BuildDock.get_node(btns[i]).pressed.connect(func(): _placement.selected_key = k)
