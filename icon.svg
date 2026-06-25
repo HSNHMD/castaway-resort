@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Sky -->
+  <rect width="128" height="128" fill="#5bb8f5"/>
+  <!-- Sun -->
+  <circle cx="96" cy="28" r="14" fill="#ffd93d"/>
+  <!-- Ocean -->
+  <ellipse cx="64" cy="110" rx="72" ry="28" fill="#1e8fba"/>
+  <!-- Island base -->
+  <ellipse cx="64" cy="92" rx="44" ry="14" fill="#e8c47a"/>
+  <!-- Island grass -->
+  <ellipse cx="64" cy="88" rx="40" ry="10" fill="#6dbf4e"/>
+  <!-- Palm trunk -->
+  <rect x="60" y="44" width="8" height="44" rx="4" fill="#a0714f"/>
+  <!-- Palm leaves left -->
+  <ellipse cx="40" cy="44" rx="22" ry="8" fill="#3aab2e" transform="rotate(-20 40 44)"/>
+  <!-- Palm leaves right -->
+  <ellipse cx="88" cy="44" rx="22" ry="8" fill="#3aab2e" transform="rotate(20 88 44)"/>
+  <!-- Palm leaves top -->
+  <ellipse cx="64" cy="36" rx="20" ry="7" fill="#4dc73e" transform="rotate(-5 64 36)"/>
+  <!-- Coconut -->
+  <circle cx="56" cy="54" r="5" fill="#7a4f2a"/>
+  <!-- Hut -->
+  <rect x="24" y="74" width="22" height="16" fill="#d4a45a"/>
+  <polygon points="22,74 46,74 34,60" fill="#c0392b"/>
+  <!-- Water sparkle 1 -->
+  <circle cx="20" cy="108" r="3" fill="#ffffff" opacity="0.5"/>
+  <!-- Water sparkle 2 -->
+  <circle cx="90" cy="112" r="2" fill="#ffffff" opacity="0.4"/>
+</svg>

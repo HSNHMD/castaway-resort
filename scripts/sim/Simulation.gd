@@ -25,12 +25,12 @@ const DEF := {
 const WAGE := 12
 const HIRE_COST := 20
 const STAFF_PER := 4
-const CHECKOUT_P := 0.07
+const CHECKOUT_P := 0.05
 const WALKOUT_P := 0.12
-const RATING_DRIFT := 0.08
-const STORM_AFTER_DAY := 18
+const RATING_DRIFT := 0.06
+const STORM_AFTER_DAY := 22
 const STORM_P := 1.0 / 110.0
-const BLOGGER_P := 1.0 / 150.0
+const BLOGGER_P := 1.0 / 120.0
 
 const GEN_RADIUS := 4.5
 const REST_RADIUS := 5.0

@@ -7,8 +7,9 @@ const TAP_THRESHOLD := 8.0
 
 @export var selected_key: String = ""
 
-@onready var _game:      Game    = get_parent() as Game
-@onready var _buildings: Node3D  = $"../Buildings"
+@onready var _game:      Game         = get_parent() as Game
+@onready var _buildings: Node3D       = $"../Buildings"
+@onready var _audio:     AudioManager = get_node_or_null("../AudioManager") as AudioManager
 
 var _touch_start:  Vector2 = Vector2.ZERO
 var _touch_moved:  float   = 0.0
@@ -79,6 +80,9 @@ func _on_tap(screen_pos: Vector2) -> void:
 	node.position = Vector3(hit_pos.x, 0.0, hit_pos.z)
 	node.scale    = Vector3.ZERO
 	_buildings.add_child(node)
+
+	if _audio != null:
+		_audio.play_place()
 
 	var tween := create_tween()
 	tween.tween_property(node, "scale", Vector3.ONE, 0.25)\

@@ -14,8 +14,11 @@ signal toast_shown(text: String)           # milestone / event banners
 const SAVE_PATH := "user://save.json"
 @export var autosave_every_ticks := 10
 
+enum Difficulty { EASY = 0, NORMAL = 1, HARD = 2 }
+
 var sim: Simulation
 var _ticks_since_save := 0
+var difficulty: int = Difficulty.NORMAL
 
 func _ready() -> void:
 	sim = _load_or_new()
@@ -88,9 +91,22 @@ func _load_or_new() -> Simulation:
 			return Simulation.load_from(txt)
 	return Simulation.new()
 
-func reset_game() -> void:
-	sim = Simulation.new()
+func _delete_save() -> void:
 	var d := DirAccess.open("user://")
 	if d and d.file_exists("save.json"):
 		d.remove("save.json")
+
+func reset_game() -> void:
+	sim = Simulation.new()
+	_delete_save()
+	state_changed.emit()
+
+func set_difficulty(d: int) -> void:
+	difficulty = clampi(d, 0, 2)
+
+func new_game(diff: int) -> void:
+	set_difficulty(diff)
+	sim = Simulation.new()
+	sim.money = ([300.0, 150.0, 80.0] as Array)[difficulty]
+	_delete_save()
 	state_changed.emit()

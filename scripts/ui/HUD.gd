@@ -4,6 +4,7 @@ extends CanvasLayer
 const MAX_REVIEWS  := 20
 const TOAST_SECS   := 4.0
 const _STAR_REQS   := {"bung": 1.5, "villa": 3.0, "runway": 3.5}
+const _DIFF_LABELS := ["😊 Easy", "⚖️ Normal", "💀 Hard"]
 
 @onready var _leaf_lbl:        Label        = $Root/TopBar/LeafLabel
 @onready var _wood_lbl:        Label        = $Root/TopBar/WoodLabel
@@ -19,6 +20,7 @@ const _STAR_REQS   := {"bung": 1.5, "villa": 3.0, "runway": 3.5}
 @onready var _blogger_lbl:     Label        = $Root/BloggerLabel
 @onready var _storm_btn:       Button       = $Root/BuildDock/StormRepairBtn
 @onready var _reclaim_btn:     Button       = $Root/BuildDock/ReclaimBtn
+@onready var _diff_lbl:        Label        = $Root/TopBar/DifficultyLabel
 
 var _game:           Game
 var _placement:      Placement
@@ -56,6 +58,8 @@ func _on_state_changed() -> void:
 	var net := s.last_net
 	_net_lbl.text     = "%+.0f/day" % net
 	_net_lbl.modulate = Color.GREEN if net >= 0.0 else Color.RED
+
+	_diff_lbl.text = _DIFF_LABELS[clampi(_game.difficulty, 0, 2)]
 
 	var c := s.caps()
 	_update_gauge(_staff_bar, c["staff_load"],  c["staff_cap"])

@@ -32,6 +32,9 @@ text = "⭐ 0.0"
 [node name="NetLabel" type="Label" parent="Root/TopBar"]
 text = "+0/day"
 
+[node name="DifficultyLabel" type="Label" parent="Root/TopBar"]
+text = "⚖️ Normal"
+
 [node name="Gauges" type="VBoxContainer" parent="Root"]
 anchor_left = 1.0
 anchor_right = 1.0
