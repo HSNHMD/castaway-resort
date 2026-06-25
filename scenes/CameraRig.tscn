@@ -1,3 +1,32 @@
-[gd_scene format=3 uid="uid://castaway_camera"]
+[gd_scene load_steps=2 format=3 uid="uid://castaway_camera"]
+
+[ext_resource type="Script" path="res://scripts/CameraRig.gd" id="scr_camera"]
 
 [node name="CameraRig" type="Node3D"]
+script = ExtResource("scr_camera")
+
+[node name="PitchPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+
+[node name="ZoomButtons" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="VBox" type="VBoxContainer" parent="ZoomButtons"]
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -80.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 120.0
+
+[node name="ZoomIn" type="Button" parent="ZoomButtons/VBox"]
+custom_minimum_size = Vector2(60, 40)
+text = "+"
+
+[node name="ZoomOut" type="Button" parent="ZoomButtons/VBox"]
+custom_minimum_size = Vector2(60, 40)
+text = "-"
