@@ -1,3 +1,93 @@
-[gd_scene format=3 uid="uid://castaway_island"]
+[gd_scene load_steps=13 format=3 uid="uid://castawayisland"]
+
+[ext_resource type="Script" path="res://scripts/WaterBob.gd" id="scr_waterbob"]
+
+[sub_resource type="StandardMaterial3D" id="mat_island"]
+albedo_color = Color(0.945, 0.871, 0.675, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_beach"]
+albedo_color = Color(0.973, 0.933, 0.800, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_lagoon"]
+transparency = 1
+albedo_color = Color(0.180, 0.769, 0.714, 0.72)
+roughness = 0.05
+metallic = 0.1
+
+[sub_resource type="StandardMaterial3D" id="mat_ocean"]
+albedo_color = Color(0.024, 0.188, 0.278, 1)
+roughness = 0.2
+metallic = 0.1
+
+[sub_resource type="CylinderMesh" id="mesh_island"]
+top_radius = 8.0
+bottom_radius = 9.5
+height = 1.0
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh_beach"]
+top_radius = 10.5
+bottom_radius = 12.0
+height = 0.4
+radial_segments = 8
+rings = 1
+
+[sub_resource type="PlaneMesh" id="mesh_lagoon"]
+size = Vector2(34, 34)
+
+[sub_resource type="PlaneMesh" id="mesh_ocean"]
+size = Vector2(200, 200)
+
+[sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
+sky_top_color = Color(0.3, 0.55, 0.85, 1)
+sky_horizon_color = Color(0.75, 0.88, 1.0, 1)
+ground_bottom_color = Color(0.024, 0.188, 0.278, 1)
+ground_horizon_color = Color(0.4, 0.68, 0.9, 1)
+
+[sub_resource type="Sky" id="sky_res"]
+sky_material = SubResource("sky_mat")
+
+[sub_resource type="Environment" id="env_res"]
+background_mode = 2
+sky = SubResource("sky_res")
+ambient_light_source = 3
+ambient_light_energy = 0.4
+fog_enabled = true
+fog_light_color = Color(0.85, 0.93, 1.0, 1)
+fog_density = 0.01
+fog_sky_affect = 0.4
 
 [node name="Island" type="Node3D"]
+
+[node name="OceanPlane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0, 0)
+mesh = SubResource("mesh_ocean")
+surface_material_override/0 = SubResource("mat_ocean")
+
+[node name="LagoonPlane" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+mesh = SubResource("mesh_lagoon")
+surface_material_override/0 = SubResource("mat_lagoon")
+script = ExtResource("scr_waterbob")
+
+[node name="BeachRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, 0)
+mesh = SubResource("mesh_beach")
+surface_material_override/0 = SubResource("mat_beach")
+
+[node name="IslandMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("mesh_island")
+surface_material_override/0 = SubResource("mat_island")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.643, -0.766, 0, 0.766, 0.643, 0, 0, 0)
+light_color = Color(1.0, 0.952, 0.847, 1)
+light_energy = 1.4
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("env_res")
