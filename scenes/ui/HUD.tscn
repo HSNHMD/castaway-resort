@@ -1,3 +1,127 @@
-[gd_scene format=3 uid="uid://castaway_hud"]
+[gd_scene load_steps=2 format=3 uid="uid://castaway_hud"]
 
-[node name="HUD" type="Control"]
+[ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="scr_hud"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("scr_hud")
+
+[node name="Root" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TopBar" type="HBoxContainer" parent="Root"]
+anchor_right = 1.0
+offset_bottom = 50.0
+theme_override_constants/separation = 16
+
+[node name="LeafLabel" type="Label" parent="Root/TopBar"]
+text = "🌿 0"
+
+[node name="WoodLabel" type="Label" parent="Root/TopBar"]
+text = "🪵 0"
+
+[node name="MoneyLabel" type="Label" parent="Root/TopBar"]
+text = "💰 150"
+
+[node name="DayLabel" type="Label" parent="Root/TopBar"]
+text = "Day 1"
+
+[node name="RatingLabel" type="Label" parent="Root/TopBar"]
+text = "⭐ 0.0"
+
+[node name="NetLabel" type="Label" parent="Root/TopBar"]
+text = "+0/day"
+
+[node name="Gauges" type="VBoxContainer" parent="Root"]
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 55.0
+offset_bottom = 230.0
+
+[node name="StaffLabel" type="Label" parent="Root/Gauges"]
+text = "Staff"
+
+[node name="StaffGauge" type="ProgressBar" parent="Root/Gauges"]
+custom_minimum_size = Vector2(155, 18)
+max_value = 6.0
+value = 0.0
+
+[node name="PowerLabel" type="Label" parent="Root/Gauges"]
+text = "Power"
+
+[node name="PowerGauge" type="ProgressBar" parent="Root/Gauges"]
+custom_minimum_size = Vector2(155, 18)
+max_value = 6.0
+value = 0.0
+
+[node name="WaterLabel" type="Label" parent="Root/Gauges"]
+text = "Water"
+
+[node name="WaterGauge" type="ProgressBar" parent="Root/Gauges"]
+custom_minimum_size = Vector2(155, 18)
+max_value = 6.0
+value = 0.0
+
+[node name="BuildDock" type="HBoxContainer" parent="Root"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+theme_override_constants/separation = 4
+
+[node name="ForageBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(70, 40)
+text = "Forage"
+
+[node name="HutBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(50, 40)
+text = "Hut"
+
+[node name="BungBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(50, 40)
+text = "Bung"
+
+[node name="VillaBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(55, 40)
+text = "Villa"
+
+[node name="JettyBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(50, 40)
+text = "Jetty"
+
+[node name="RestBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(50, 40)
+text = "Rest"
+
+[node name="GenBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(45, 40)
+text = "Gen"
+
+[node name="SolarBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(55, 40)
+text = "Solar"
+
+[node name="DesalBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(55, 40)
+text = "Desal"
+
+[node name="ReviewFeed" type="ScrollContainer" parent="Root"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -290.0
+offset_top = -290.0
+offset_right = 0.0
+offset_bottom = -60.0
+
+[node name="ReviewList" type="VBoxContainer" parent="Root/ReviewFeed"]
+size_flags_horizontal = 3
+
+[node name="ToastLabel" type="Label" parent="Root"]
+anchor_left = 0.15
+anchor_right = 0.85
+offset_top = 55.0
+offset_bottom = 90.0
+horizontal_alignment = 1
