@@ -64,9 +64,11 @@ func _on_tap(screen_pos: Vector2) -> void:
 	var hit_pos: Vector3 = hit
 	var dist := Vector2(hit_pos.x, hit_pos.z).length()
 
+	var island_r := ISLAND_RADIUS + _game.sim.reclaimed * 0.8
+	var beach_r  := BEACH_OUTER   + _game.sim.reclaimed * 0.8
 	var meta := {
-		"on_beach":   dist > ISLAND_RADIUS,
-		"over_water": dist > BEACH_OUTER,
+		"on_beach":   dist > island_r,
+		"over_water": dist > beach_r,
 	}
 
 	var result: Dictionary = _game.try_place(selected_key, hit_pos.x, hit_pos.z, meta)

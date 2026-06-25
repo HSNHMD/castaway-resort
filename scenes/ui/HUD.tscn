@@ -70,6 +70,15 @@ anchor_bottom = 1.0
 offset_top = -55.0
 theme_override_constants/separation = 4
 
+[node name="StormRepairBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(110, 40)
+text = "🔧 Repair"
+visible = false
+
+[node name="ReclaimBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(100, 40)
+text = "🏝 Reclaim"
+
 [node name="ForageBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(70, 40)
 text = "Forage"
@@ -106,6 +115,10 @@ text = "Solar"
 custom_minimum_size = Vector2(55, 40)
 text = "Desal"
 
+[node name="RunwayBtn" type="Button" parent="Root/BuildDock"]
+custom_minimum_size = Vector2(65, 40)
+text = "Runway"
+
 [node name="ReviewFeed" type="ScrollContainer" parent="Root"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -125,3 +138,12 @@ anchor_right = 0.85
 offset_top = 55.0
 offset_bottom = 90.0
 horizontal_alignment = 1
+
+[node name="BloggerLabel" type="Label" parent="Root"]
+anchor_left = 0.15
+anchor_right = 0.85
+offset_top = 95.0
+offset_bottom = 120.0
+horizontal_alignment = 1
+visible = false
+text = "✨ Blogger surge!"
