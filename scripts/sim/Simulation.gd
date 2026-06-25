@@ -186,10 +186,11 @@ func repair_storm() -> bool:
 	return false
 
 func _recompute_rating() -> void:
-	rating = clampf(
+	var struct_r := clampf(
 		(0.6 if built["jetty"] > 0 else 0.0) + (1.2 if built["rest"] > 0 else 0.0) \
 		+ built["bung"] * 0.2 + built["villa"] * 0.45 \
 		+ (0.7 if built["runway"] > 0 else 0.0) + min(built["hut"] * 0.05, 0.4), 0.0, 5.0)
+	rating = maxf(rating, struct_r)
 
 # ----------------------------- the daily tick -----------------------------
 func tick() -> Dictionary:
@@ -244,16 +245,16 @@ func tick() -> Dictionary:
 				if randf() < WALKOUT_P: occ[t] -= 1
 
 	# income
-	var income := occ["hut"] * DEF["hut"]["rate"] + occ["bung"] * DEF["bung"]["rate"] + occ["villa"] * DEF["villa"]["rate"]
-	var full := occ["hut"] + occ["bung"] + occ["villa"]
+	var income: int = occ["hut"] * DEF["hut"]["rate"] + occ["bung"] * DEF["bung"]["rate"] + occ["villa"] * DEF["villa"]["rate"]
+	var full: int = occ["hut"] + occ["bung"] + occ["villa"]
 	if built["rest"] > 0: income += full * 5
 
 	# costs (the money sinks)
 	var salaries := staff * WAGE
 	var upkeep := 0
 	for k in built: upkeep += built[k] * DEF[k]["upkeep"]
-	var fuel := built["gen"] * int(DEF["gen"]["fuel"])
-	var net := income - salaries - upkeep - fuel
+	var fuel: int = built["gen"] * int(DEF["gen"]["fuel"])
+	var net: float = income - salaries - upkeep - fuel
 	last_net = net
 	money += net
 
