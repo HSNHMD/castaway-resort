@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://castaway_hud"]
+
+[node name="HUD" type="Control"]

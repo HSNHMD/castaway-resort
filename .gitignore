@@ -1,0 +1,15 @@
+# Godot 4 editor cache — auto-generated, never commit
+.godot/
+
+# Export artefacts
+export.cfg
+export_presets.cfg
+*.pck
+*.apk
+*.aab
+*.ipa
+*.dmg
+*.exe
+
+# macOS
+.DS_Store
