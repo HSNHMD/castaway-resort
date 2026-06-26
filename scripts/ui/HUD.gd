@@ -37,6 +37,10 @@ func _ready() -> void:
 	_game      = get_parent() as Game
 	_placement = get_node("../Placement") as Placement
 
+	var t := Theme.new()
+	t.default_font_size = 28
+	$Root.theme = t
+
 	_game.state_changed.connect(_on_state_changed)
 	_game.reviews_posted.connect(_on_reviews_posted)
 	_game.toast_shown.connect(_on_toast_shown)
@@ -132,6 +136,7 @@ func _on_reviews_posted(reviews: Array) -> void:
 		var lbl := Label.new()
 		lbl.text          = "%s %s: %s" % [prefix, r.get("name", ""), r.get("msg", "")]
 		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		lbl.add_theme_font_size_override("font_size", 22)
 		_review_list.add_child(lbl)
 
 	while _review_list.get_child_count() > MAX_REVIEWS:

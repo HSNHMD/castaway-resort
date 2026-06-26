@@ -18,15 +18,15 @@ anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 0.0
-offset_left = -80.0
+offset_left = -110.0
 offset_top = 20.0
-offset_right = -20.0
-offset_bottom = 120.0
+offset_right = -10.0
+offset_bottom = 140.0
 
 [node name="ZoomIn" type="Button" parent="ZoomButtons/VBox"]
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(90, 56)
 text = "+"
 
 [node name="ZoomOut" type="Button" parent="ZoomButtons/VBox"]
-custom_minimum_size = Vector2(60, 40)
+custom_minimum_size = Vector2(90, 56)
 text = "-"
