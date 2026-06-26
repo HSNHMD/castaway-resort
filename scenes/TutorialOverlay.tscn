@@ -8,10 +8,12 @@ script = ExtResource("scr_tutorial")
 [node name="Root" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="Dim" type="ColorRect" parent="Root"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0.55)
 
 [node name="Panel" type="VBoxContainer" parent="Root"]

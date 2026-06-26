@@ -80,6 +80,7 @@ func _on_tap(screen_pos: Vector2) -> void:
 	node.position = Vector3(hit_pos.x, 0.0, hit_pos.z)
 	node.scale    = Vector3.ZERO
 	_buildings.add_child(node)
+	selected_key = ""
 
 	if _audio != null:
 		_audio.call(&"play_place")

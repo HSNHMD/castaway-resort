@@ -22,10 +22,11 @@ const _DIFF_LABELS := ["😊 Easy", "⚖️ Normal", "💀 Hard"]
 @onready var _reclaim_btn:     Button       = $Root/BuildDock/ReclaimBtn
 @onready var _diff_lbl:        Label        = $Root/TopBar/DifficultyLabel
 
-var _game:           Game
-var _placement:      Placement
-var _toast_t:        float = 0.0
-var _prev_reclaimed: int   = 0
+var _game:              Game
+var _placement:         Placement
+var _toast_t:           float  = 0.0
+var _prev_reclaimed:    int    = 0
+var _active_build_btn:  Button = null
 
 func _ready() -> void:
 	_game      = get_parent() as Game
@@ -48,6 +49,9 @@ func _process(delta: float) -> void:
 			_toast_lbl.visible = false
 
 func _on_state_changed() -> void:
+	if _active_build_btn != null and _placement.selected_key.is_empty():
+		_active_build_btn.modulate = Color.WHITE
+		_active_build_btn = null
 	var s := _game.sim
 	_leaf_lbl.text   = "🌿 %d"    % s.leaf
 	_wood_lbl.text   = "🪵 %d"    % s.wood
@@ -142,8 +146,15 @@ func _connect_dock() -> void:
 	var keys: Array[String] = ["hut","bung","villa","jetty","rest","gen","solar","desal","runway"]
 	var btns: Array[String] = ["HutBtn","BungBtn","VillaBtn","JettyBtn","RestBtn","GenBtn","SolarBtn","DesalBtn","RunwayBtn"]
 	for i in range(keys.size()):
-		var k := keys[i]
-		$Root/BuildDock.get_node(btns[i]).pressed.connect(func(): _placement.selected_key = k)
+		var btn := $Root/BuildDock.get_node(btns[i]) as Button
+		btn.pressed.connect(_on_build_btn_pressed.bind(btn, keys[i]))
+
+func _on_build_btn_pressed(btn: Button, key: String) -> void:
+	if _active_build_btn != null:
+		_active_build_btn.modulate = Color.WHITE
+	_active_build_btn = btn
+	btn.modulate = Color(0.6, 1.0, 0.6)
+	_placement.selected_key = key
 
 func _on_reclaim_pressed() -> void:
 	var ok := _game.reclaim()
