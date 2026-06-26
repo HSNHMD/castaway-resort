@@ -1,8 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://castawayisland"]
+[gd_scene load_steps=21 format=3 uid="uid://castawayisland"]
 
 [ext_resource type="Script" path="res://scripts/WaterBob.gd" id="scr_waterbob"]
 [ext_resource type="PackedScene" path="res://assets/models/kenney_nature-kit/Models/GLTF format/tree_palmDetailedTall.glb" id="mdl_palm"]
 [ext_resource type="Shader" path="res://assets/shaders/water.gdshader" id="shader_water"]
+[ext_resource type="PackedScene" path="res://assets/models/kenney_nature-kit/Models/GLTF format/rock_smallA.glb" id="mdl_rock_a"]
+[ext_resource type="PackedScene" path="res://assets/models/kenney_nature-kit/Models/GLTF format/rock_smallB.glb" id="mdl_rock_b"]
+[ext_resource type="PackedScene" path="res://assets/models/kenney_nature-kit/Models/GLTF format/plant_bushLarge.glb" id="mdl_bush"]
 
 [sub_resource type="StandardMaterial3D" id="mat_island"]
 albedo_color = Color(0.945, 0.871, 0.675, 1)
@@ -119,10 +122,28 @@ shadow_blur = 0.8
 environment = SubResource("env_res")
 
 [node name="PalmA" parent="." instance=ExtResource("mdl_palm")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 3.0, 0, 2.0)
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 2.8, 0, 2.2)
 
 [node name="PalmB" parent="." instance=ExtResource("mdl_palm")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, -3.5, 0, -1.5)
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 4.2, 0, 1.0)
 
 [node name="PalmC" parent="." instance=ExtResource("mdl_palm")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.5, 0, -4.0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 3.5, 0, 3.5)
+
+[node name="PalmD" parent="." instance=ExtResource("mdl_palm")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, -3.2, 0, -1.8)
+
+[node name="PalmE" parent="." instance=ExtResource("mdl_palm")]
+transform = Transform3D(0.85, 0, 0, 0, 0.85, 0, 0, 0, 0.85, -4.5, 0, -3.0)
+
+[node name="RockA1" parent="." instance=ExtResource("mdl_rock_a")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 1.0, 0, -2.8)
+
+[node name="RockA2" parent="." instance=ExtResource("mdl_rock_a")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -1.5, 0, 2.5)
+
+[node name="RockB1" parent="." instance=ExtResource("mdl_rock_b")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, 2.0, 0, -1.5)
+
+[node name="Bush1" parent="." instance=ExtResource("mdl_bush")]
+transform = Transform3D(1.0, 0, 0, 0, 1.0, 0, 0, 0, 1.0, -2.0, 0, 1.8)
