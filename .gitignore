@@ -12,5 +12,8 @@ export_presets.cfg
 *.dmg
 *.exe
 
+# Large binary model assets — baked into export .pck at build time, keep local only
+assets/models/
+
 # macOS
 .DS_Store

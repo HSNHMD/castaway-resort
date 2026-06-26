@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://castaway_bld_rest"]
 
-[ext_resource type="PackedScene" path="res://assets/models/kenney_nature-kit/Models/GLTF format/campfire_bricks.glb" id="1_model"]
+[ext_resource type="PackedScene" path="res://assets/models/kenney_survival-kit/Models/GLB format/campfire-stand.glb" id="1_model"]
 
 [node name="rest" type="Node3D"]
 

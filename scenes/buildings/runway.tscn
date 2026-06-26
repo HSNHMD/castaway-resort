@@ -1,7 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://castaway_bld_runway"]
 
-[ext_resource type="PackedScene" path="res://assets/models/kenney_survival-kit/Models/GLB format/structure-metal-floor.glb" id="1_model"]
+[ext_resource type="PackedScene" path="res://assets/models/kenney_nature-kit/Models/GLTF format/platform_stone.glb" id="1_model"]
 
 [node name="runway" type="Node3D"]
 
 [node name="Model" parent="." instance=ExtResource("1_model")]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 3, 0, 0, 0)
