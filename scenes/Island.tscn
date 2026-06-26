@@ -8,11 +8,11 @@
 [ext_resource type="PackedScene" path="res://assets/models/kenney_nature-kit/Models/GLTF format/plant_bushLarge.glb" id="mdl_bush"]
 
 [sub_resource type="StandardMaterial3D" id="mat_island"]
-albedo_color = Color(0.945, 0.871, 0.675, 1)
+albedo_color = Color(0.72, 0.60, 0.40, 1)
 roughness = 0.9
 
 [sub_resource type="StandardMaterial3D" id="mat_beach"]
-albedo_color = Color(0.973, 0.933, 0.800, 1)
+albedo_color = Color(0.87, 0.78, 0.60, 1)
 roughness = 0.9
 
 [sub_resource type="ShaderMaterial" id="mat_lagoon"]
@@ -69,7 +69,7 @@ sky_material = SubResource("sky_mat")
 background_mode = 2
 sky = SubResource("sky_res")
 tonemap_mode = 2
-tonemap_white = 3.0
+tonemap_white = 2.0
 ambient_light_source = 2
 ambient_light_color = Color(0.92, 0.88, 0.78, 1)
 ambient_light_energy = 0.80
@@ -116,7 +116,7 @@ surface_material_override/0 = SubResource("mat_island")
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.968, 0.240, -0.064, 0.0, 0.257, 0.966, -0.249, 0.936, -0.249, 0, 0, 0)
 light_color = Color(1.0, 0.95, 0.80, 1)
-light_energy = 2.0
+light_energy = 2.5
 shadow_enabled = true
 shadow_blur = 0.8
 
