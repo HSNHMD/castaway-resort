@@ -47,8 +47,9 @@ radius = 1.0
 height = 2.0
 
 [sub_resource type="ProceduralSkyMaterial" id="sky_mat"]
-sky_top_color = Color(0.12, 0.35, 0.78, 1)
-sky_horizon_color = Color(0.55, 0.78, 1.0, 1)
+sky_top_color = Color(0.08, 0.28, 0.82, 1)
+sky_horizon_color = Color(0.52, 0.82, 1.0, 1)
+sky_curve = 0.12
 ground_bottom_color = Color(0.024, 0.188, 0.278, 1)
 ground_horizon_color = Color(0.38, 0.62, 0.88, 1)
 
@@ -59,8 +60,8 @@ sky_material = SubResource("sky_mat")
 background_mode = 2
 sky = SubResource("sky_res")
 ambient_light_source = 2
-ambient_light_color = Color(0.90, 0.86, 0.76, 1)
-ambient_light_energy = 0.55
+ambient_light_color = Color(0.92, 0.88, 0.78, 1)
+ambient_light_energy = 0.80
 fog_enabled = false
 
 [node name="Island" type="Node3D"]
@@ -97,10 +98,11 @@ mesh = SubResource("mesh_sphere")
 surface_material_override/0 = SubResource("mat_island")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.707, 0.541, 0.454, 0, 0.643, -0.766, -0.707, 0.541, 0.454, 0, 0, 0)
-light_color = Color(1.0, 0.96, 0.85, 1)
-light_energy = 2.3
+transform = Transform3D(0.968, 0.240, -0.064, 0.0, 0.257, 0.966, -0.249, 0.936, -0.249, 0, 0, 0)
+light_color = Color(1.0, 0.95, 0.80, 1)
+light_energy = 3.5
 shadow_enabled = true
+shadow_blur = 0.8
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("env_res")
