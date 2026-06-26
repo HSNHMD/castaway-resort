@@ -5,6 +5,7 @@
 export.cfg
 export_presets.cfg
 *.pck
+!docs/*.pck
 *.apk
 *.aab
 *.ipa
