@@ -13,7 +13,7 @@ const ZOOM_MAX     := 35.0
 
 var _yaw            := 0.0
 var _pitch          := -50.0
-var _zoom_distance  := 18.0
+var _zoom_distance  := 14.0
 var _dragging       := false   # desktop left-mouse held
 
 # two-finger state
