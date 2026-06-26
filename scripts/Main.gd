@@ -16,7 +16,7 @@ const SAVE_PATH := "user://save.json"
 
 enum Difficulty { EASY = 0, NORMAL = 1, HARD = 2 }
 
-var sim: Simulation
+var sim: Simulation = Simulation.new()
 var _ticks_since_save := 0
 var difficulty: int = Difficulty.NORMAL
 

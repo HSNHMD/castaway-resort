@@ -48,8 +48,6 @@ func _ready() -> void:
 	_connect_dock()
 	_toast_lbl.visible   = false
 	_blogger_lbl.visible = false
-	_prev_reclaimed      = _game.sim.reclaimed
-	_on_state_changed()
 
 func _process(delta: float) -> void:
 	if _toast_t > 0.0:
