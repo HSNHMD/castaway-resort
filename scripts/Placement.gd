@@ -23,7 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.pressed:
 			_touch_start  = event.position
 			_touch_moved  = 0.0
-		else:
+		elif not _mouse_held:
 			if _touch_moved < TAP_THRESHOLD:
 				_on_tap(_touch_start)
 		return

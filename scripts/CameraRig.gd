@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenDrag:
 		_touches[event.index] = event.position
 
-		if _touches.size() == 1:
+		if _touches.size() == 1 and not _dragging:
 			_orbit(event.relative)
 
 		elif _touches.size() == 2:
