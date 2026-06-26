@@ -23,9 +23,9 @@ const _DOCK_KEY_BTN := {
 @onready var _review_list:     VBoxContainer = $Root/ReviewFeed/ReviewList
 @onready var _toast_lbl:       Label        = $Root/ToastLabel
 @onready var _blogger_lbl:     Label        = $Root/BloggerLabel
-@onready var _storm_btn:       Button       = $Root/BuildDock/StormRepairBtn
-@onready var _reclaim_btn:     Button       = $Root/BuildDock/ReclaimBtn
-@onready var _new_game_btn:    Button       = $Root/BuildDock/NewGameBtn
+@onready var _storm_btn:       Button       = $Root/DockScroll/BuildDock/StormRepairBtn
+@onready var _reclaim_btn:     Button       = $Root/DockScroll/BuildDock/ReclaimBtn
+@onready var _new_game_btn:    Button       = $Root/DockScroll/BuildDock/NewGameBtn
 @onready var _diff_lbl:        Label        = $Root/TopBar/DifficultyLabel
 
 var _game:           Game
@@ -123,9 +123,9 @@ func _grow_island(n: int) -> void:
 
 func _get_building_btn(key: String) -> Button:
 	match key:
-		"bung":   return $Root/BuildDock/BungBtn
-		"villa":  return $Root/BuildDock/VillaBtn
-		"runway": return $Root/BuildDock/RunwayBtn
+		"bung":   return $Root/DockScroll/BuildDock/BungBtn
+		"villa":  return $Root/DockScroll/BuildDock/VillaBtn
+		"runway": return $Root/DockScroll/BuildDock/RunwayBtn
 	return null
 
 func _on_reviews_posted(reviews: Array) -> void:
@@ -154,9 +154,9 @@ func _connect_dock() -> void:
 	_storm_btn.pressed.connect(func(): _game.repair_storm())
 	_reclaim_btn.pressed.connect(_on_reclaim_pressed)
 	_new_game_btn.pressed.connect(func(): _game.restart_to_tutorial())
-	$Root/BuildDock/ForageBtn.pressed.connect(func(): _game.forage())
+	$Root/DockScroll/BuildDock/ForageBtn.pressed.connect(func(): _game.forage())
 
-	var dock := $Root/BuildDock
+	var dock := $Root/DockScroll/BuildDock
 	for key in _DOCK_KEY_BTN:
 		var btn := dock.get_node(_DOCK_KEY_BTN[key]) as Button
 		_build_btns[key] = btn
