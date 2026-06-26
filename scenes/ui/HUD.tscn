@@ -149,9 +149,9 @@ theme_override_font_sizes/font_size = 24
 text = "Runway"
 
 [node name="NewGameBtn" type="Button" parent="Root/BuildDock"]
-custom_minimum_size = Vector2(90, 56)
+custom_minimum_size = Vector2(120, 56)
 theme_override_font_sizes/font_size = 24
-text = "↺ New"
+text = "New Game"
 
 [node name="ReviewFeed" type="ScrollContainer" parent="Root"]
 anchor_left = 1.0
