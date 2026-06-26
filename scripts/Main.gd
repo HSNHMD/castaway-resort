@@ -30,6 +30,8 @@ func _ready() -> void:
 	state_changed.emit()
 
 func _on_tick() -> void:
+	if get_node_or_null("TutorialOverlay") != null:
+		return
 	var res := sim.tick()
 	if (res["reviews"] as Array).size() > 0:
 		reviews_posted.emit(res["reviews"])
