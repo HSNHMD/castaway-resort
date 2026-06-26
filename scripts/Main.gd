@@ -92,12 +92,17 @@ func _load_or_new() -> Simulation:
 	return Simulation.new()
 
 func restart_to_tutorial() -> void:
+	# Write a clean Day-1 sim to save.json so _load_or_new always gets
+	# fresh state regardless of deletion timing on web's VFS.
+	sim = Simulation.new()
+	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if f:
+		f.store_string(sim.serialize())
+		f.close()
+	# Best-effort delete tutorial_done so the tutorial shows again.
 	var d := DirAccess.open("user://")
 	if d:
-		if d.file_exists("save.json"):
-			d.remove("save.json")
-		if d.file_exists("tutorial_done"):
-			d.remove("tutorial_done")
+		d.remove("tutorial_done")
 	get_tree().reload_current_scene()
 
 func _delete_save() -> void:

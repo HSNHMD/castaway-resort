@@ -20,7 +20,7 @@ var _step:        int = 0
 var _chosen_diff: int = 1
 
 func _ready() -> void:
-	if FileAccess.file_exists(Game.SAVE_PATH) or FileAccess.file_exists("user://tutorial_done"):
+	if FileAccess.file_exists("user://tutorial_done"):
 		queue_free()
 		return
 
