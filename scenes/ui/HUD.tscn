@@ -79,80 +79,77 @@ custom_minimum_size = Vector2(216, 22)
 max_value = 6.0
 value = 0.0
 
-[node name="DockScroll" type="ScrollContainer" parent="Root"]
+[node name="BuildDock" type="HFlowContainer" parent="Root"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -70.0
-horizontal_scroll_mode = 1
-vertical_scroll_mode = 0
-
-[node name="BuildDock" type="HBoxContainer" parent="Root/DockScroll"]
+offset_top = -140.0
 mouse_filter = 2
-theme_override_constants/separation = 4
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
 
-[node name="StormRepairBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="StormRepairBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(148, 56)
 theme_override_font_sizes/font_size = 24
 text = "🔧 Repair"
 visible = false
 
-[node name="ReclaimBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="ReclaimBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(134, 56)
 theme_override_font_sizes/font_size = 24
 text = "🏝 Reclaim"
 
-[node name="ForageBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="ForageBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(100, 56)
 theme_override_font_sizes/font_size = 24
 text = "Forage"
 
-[node name="HutBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="HutBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(70, 56)
 theme_override_font_sizes/font_size = 24
 text = "Hut"
 
-[node name="BungBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="BungBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(78, 56)
 theme_override_font_sizes/font_size = 24
 text = "Bung"
 
-[node name="VillaBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="VillaBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(78, 56)
 theme_override_font_sizes/font_size = 24
 text = "Villa"
 
-[node name="JettyBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="JettyBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(78, 56)
 theme_override_font_sizes/font_size = 24
 text = "Jetty"
 
-[node name="RestBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="RestBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(74, 56)
 theme_override_font_sizes/font_size = 24
 text = "Rest"
 
-[node name="GenBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="GenBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(68, 56)
 theme_override_font_sizes/font_size = 24
 text = "Gen"
 
-[node name="SolarBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="SolarBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(84, 56)
 theme_override_font_sizes/font_size = 24
 text = "Solar"
 
-[node name="DesalBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="DesalBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(84, 56)
 theme_override_font_sizes/font_size = 24
 text = "Desal"
 
-[node name="RunwayBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="RunwayBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(94, 56)
 theme_override_font_sizes/font_size = 24
 text = "Runway"
 
-[node name="NewGameBtn" type="Button" parent="Root/DockScroll/BuildDock"]
+[node name="NewGameBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(120, 56)
 theme_override_font_sizes/font_size = 24
 text = "New Game"
