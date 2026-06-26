@@ -25,6 +25,7 @@ const _DOCK_KEY_BTN := {
 @onready var _blogger_lbl:     Label        = $Root/BloggerLabel
 @onready var _storm_btn:       Button       = $Root/BuildDock/StormRepairBtn
 @onready var _reclaim_btn:     Button       = $Root/BuildDock/ReclaimBtn
+@onready var _new_game_btn:    Button       = $Root/BuildDock/NewGameBtn
 @onready var _diff_lbl:        Label        = $Root/TopBar/DifficultyLabel
 
 var _game:           Game
@@ -152,6 +153,7 @@ func _on_toast_shown(text: String) -> void:
 func _connect_dock() -> void:
 	_storm_btn.pressed.connect(func(): _game.repair_storm())
 	_reclaim_btn.pressed.connect(_on_reclaim_pressed)
+	_new_game_btn.pressed.connect(func(): _game.restart_to_tutorial())
 	$Root/BuildDock/ForageBtn.pressed.connect(func(): _game.forage())
 
 	var dock := $Root/BuildDock

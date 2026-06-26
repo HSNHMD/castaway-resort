@@ -91,6 +91,15 @@ func _load_or_new() -> Simulation:
 			return Simulation.load_from(txt)
 	return Simulation.new()
 
+func restart_to_tutorial() -> void:
+	var d := DirAccess.open("user://")
+	if d:
+		if d.file_exists("save.json"):
+			d.remove("save.json")
+		if d.file_exists("tutorial_done"):
+			d.remove("tutorial_done")
+	get_tree().reload_current_scene()
+
 func _delete_save() -> void:
 	var d := DirAccess.open("user://")
 	if d and d.file_exists("save.json"):
