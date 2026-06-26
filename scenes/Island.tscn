@@ -32,14 +32,14 @@ shader_parameter/depth_scale = 90.0
 top_radius = 8.0
 bottom_radius = 9.5
 height = 1.0
-radial_segments = 8
+radial_segments = 32
 rings = 1
 
 [sub_resource type="CylinderMesh" id="mesh_beach"]
 top_radius = 10.5
 bottom_radius = 12.0
 height = 0.4
-radial_segments = 8
+radial_segments = 32
 rings = 1
 
 [sub_resource type="PlaneMesh" id="mesh_lagoon"]
@@ -94,12 +94,17 @@ mesh = SubResource("mesh_island")
 surface_material_override/0 = SubResource("mat_island")
 
 [node name="Hillock1" type="MeshInstance3D" parent="."]
-transform = Transform3D(3.5, 0, 0, 0, 0.4, 0, 0, 0, 3.0, 1.5, 0.0, 1.0)
+transform = Transform3D(4.0, 0, 0, 0, 0.45, 0, 0, 0, 3.2, 1.8, 0.0, 0.8)
 mesh = SubResource("mesh_sphere")
 surface_material_override/0 = SubResource("mat_island")
 
 [node name="Hillock2" type="MeshInstance3D" parent="."]
-transform = Transform3D(2.8, 0, 0, 0, 0.35, 0, 0, 0, 3.5, -2.5, 0.0, -1.0)
+transform = Transform3D(3.2, 0, 0, 0, 0.38, 0, 0, 0, 4.0, -2.2, 0.0, -0.8)
+mesh = SubResource("mesh_sphere")
+surface_material_override/0 = SubResource("mat_island")
+
+[node name="Hillock3" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.4, 0, 0, 0, 0.28, 0, 0, 0, 2.6, -0.5, 0.0, 3.2)
 mesh = SubResource("mesh_sphere")
 surface_material_override/0 = SubResource("mat_island")
 
