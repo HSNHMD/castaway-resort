@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://castawayisland"]
+[gd_scene load_steps=18 format=3 uid="uid://castawayisland"]
 
 [ext_resource type="Script" path="res://scripts/WaterBob.gd" id="scr_waterbob"]
 [ext_resource type="PackedScene" path="res://assets/models/kenney_nature-kit/Models/GLTF format/tree_palmDetailedTall.glb" id="mdl_palm"]
+[ext_resource type="Shader" path="res://assets/shaders/water.gdshader" id="shader_water"]
 
 [sub_resource type="StandardMaterial3D" id="mat_island"]
 albedo_color = Color(0.945, 0.871, 0.675, 1)
@@ -11,16 +12,21 @@ roughness = 0.9
 albedo_color = Color(0.973, 0.933, 0.800, 1)
 roughness = 0.9
 
-[sub_resource type="StandardMaterial3D" id="mat_lagoon"]
-transparency = 1
-albedo_color = Color(0.18, 0.769, 0.714, 0.75)
-roughness = 0.05
-metallic = 0.1
+[sub_resource type="ShaderMaterial" id="mat_lagoon"]
+shader = ExtResource("shader_water")
+shader_parameter/wave_speed = 0.7
+shader_parameter/wave_scale = 5.0
+shader_parameter/color_shallow = Color(0.22, 0.84, 0.78, 0.68)
+shader_parameter/color_deep = Color(0.04, 0.28, 0.46, 0.82)
+shader_parameter/depth_scale = 17.0
 
-[sub_resource type="StandardMaterial3D" id="mat_ocean"]
-albedo_color = Color(0.024, 0.188, 0.278, 1)
-roughness = 0.2
-metallic = 0.1
+[sub_resource type="ShaderMaterial" id="mat_ocean"]
+shader = ExtResource("shader_water")
+shader_parameter/wave_speed = 0.4
+shader_parameter/wave_scale = 3.0
+shader_parameter/color_shallow = Color(0.05, 0.30, 0.52, 0.84)
+shader_parameter/color_deep = Color(0.01, 0.09, 0.20, 0.94)
+shader_parameter/depth_scale = 90.0
 
 [sub_resource type="CylinderMesh" id="mesh_island"]
 top_radius = 8.0
