@@ -5,6 +5,11 @@ const MAX_REVIEWS  := 20
 const TOAST_SECS   := 4.0
 const _STAR_REQS   := {"bung": 1.5, "villa": 3.0, "runway": 3.5}
 const _DIFF_LABELS := ["😊 Easy", "⚖️ Normal", "💀 Hard"]
+const _DOCK_KEY_BTN := {
+	"hut": "HutBtn", "bung": "BungBtn", "villa": "VillaBtn",
+	"jetty": "JettyBtn", "rest": "RestBtn", "gen": "GenBtn",
+	"solar": "SolarBtn", "desal": "DesalBtn", "runway": "RunwayBtn"
+}
 
 @onready var _leaf_lbl:        Label        = $Root/TopBar/LeafLabel
 @onready var _wood_lbl:        Label        = $Root/TopBar/WoodLabel
@@ -22,11 +27,11 @@ const _DIFF_LABELS := ["😊 Easy", "⚖️ Normal", "💀 Hard"]
 @onready var _reclaim_btn:     Button       = $Root/BuildDock/ReclaimBtn
 @onready var _diff_lbl:        Label        = $Root/TopBar/DifficultyLabel
 
-var _game:              Game
-var _placement:         Placement
-var _toast_t:           float  = 0.0
-var _prev_reclaimed:    int    = 0
-var _active_build_btn:  Button = null
+var _game:           Game
+var _placement:      Placement
+var _toast_t:        float = 0.0
+var _prev_reclaimed: int   = 0
+var _build_btns:     Dictionary = {}   # key String -> Button
 
 func _ready() -> void:
 	_game      = get_parent() as Game
@@ -49,9 +54,7 @@ func _process(delta: float) -> void:
 			_toast_lbl.visible = false
 
 func _on_state_changed() -> void:
-	if _active_build_btn != null and _placement.selected_key.is_empty():
-		_active_build_btn.modulate = Color.WHITE
-		_active_build_btn = null
+	_refresh_build_highlights()
 	var s := _game.sim
 	_leaf_lbl.text   = "🌿 %d"    % s.leaf
 	_wood_lbl.text   = "🪵 %d"    % s.wood
@@ -70,31 +73,36 @@ func _on_state_changed() -> void:
 	_update_gauge(_power_bar, c["power_load"],  c["power_cap"])
 	_update_gauge(_water_bar, c["water_load"],  c["water_cap"])
 
-	# storm repair
-	_storm_btn.visible = s.storm_repair > 0
 	if s.storm_repair > 0:
-		_storm_btn.text = "🔧 Repair (%d)" % s.storm_repair
+		_storm_btn.visible = true
+		_storm_btn.text    = "🔧 Repair (%d)" % s.storm_repair
+	else:
+		_storm_btn.visible = false
 
-	# reclaim
 	_reclaim_btn.text = "🏝 Reclaim (%d)" % s.reclaim_cost()
 
-	# blogger surge
-	_blogger_lbl.visible = s.blogger_days > 0
 	if s.blogger_days > 0:
-		_blogger_lbl.text = "✨ Blogger: %d days" % s.blogger_days
+		_blogger_lbl.visible = true
+		_blogger_lbl.text    = "✨ Blogger: %d days" % s.blogger_days
+	else:
+		_blogger_lbl.visible = false
 
-	# building lock indicators
 	var rating := s.rating
 	for key in _STAR_REQS:
 		var btn := _get_building_btn(key)
 		if btn:
 			btn.disabled = rating < _STAR_REQS[key]
 
-	# island growth
 	var r := s.reclaimed
 	if r > _prev_reclaimed:
 		_prev_reclaimed = r
 		_grow_island(r)
+
+func _refresh_build_highlights() -> void:
+	var sel := _placement.selected_key
+	for key in _build_btns:
+		(_build_btns[key] as Button).modulate = \
+			Color(0.6, 1.0, 0.6) if sel == key else Color.WHITE
 
 func _update_gauge(bar: ProgressBar, load: int, cap: int) -> void:
 	bar.max_value = max(cap, max(load, 1))
@@ -143,18 +151,15 @@ func _connect_dock() -> void:
 	_reclaim_btn.pressed.connect(_on_reclaim_pressed)
 	$Root/BuildDock/ForageBtn.pressed.connect(func(): _game.forage())
 
-	var keys: Array[String] = ["hut","bung","villa","jetty","rest","gen","solar","desal","runway"]
-	var btns: Array[String] = ["HutBtn","BungBtn","VillaBtn","JettyBtn","RestBtn","GenBtn","SolarBtn","DesalBtn","RunwayBtn"]
-	for i in range(keys.size()):
-		var btn := $Root/BuildDock.get_node(btns[i]) as Button
-		btn.pressed.connect(_on_build_btn_pressed.bind(btn, keys[i]))
+	var dock := $Root/BuildDock
+	for key in _DOCK_KEY_BTN:
+		var btn := dock.get_node(_DOCK_KEY_BTN[key]) as Button
+		_build_btns[key] = btn
+		btn.pressed.connect(_on_build_btn_pressed.bind(key))
 
-func _on_build_btn_pressed(btn: Button, key: String) -> void:
-	if _active_build_btn != null:
-		_active_build_btn.modulate = Color.WHITE
-	_active_build_btn = btn
-	btn.modulate = Color(0.6, 1.0, 0.6)
+func _on_build_btn_pressed(key: String) -> void:
 	_placement.selected_key = key
+	_refresh_build_highlights()
 
 func _on_reclaim_pressed() -> void:
 	var ok := _game.reclaim()
