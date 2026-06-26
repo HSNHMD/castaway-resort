@@ -59,8 +59,8 @@ sky_material = SubResource("sky_mat")
 background_mode = 2
 sky = SubResource("sky_res")
 ambient_light_source = 2
-ambient_light_color = Color(0.86, 0.80, 0.68, 1)
-ambient_light_energy = 0.3
+ambient_light_color = Color(0.90, 0.86, 0.76, 1)
+ambient_light_energy = 0.55
 fog_enabled = false
 
 [node name="Island" type="Node3D"]
@@ -98,8 +98,8 @@ surface_material_override/0 = SubResource("mat_island")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707, 0.541, 0.454, 0, 0.643, -0.766, -0.707, 0.541, 0.454, 0, 0, 0)
-light_color = Color(1.0, 0.952, 0.847, 1)
-light_energy = 1.6
+light_color = Color(1.0, 0.96, 0.85, 1)
+light_energy = 2.3
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
