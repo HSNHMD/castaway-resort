@@ -17,24 +17,31 @@ mouse_filter = 2
 theme_override_constants/separation = 16
 
 [node name="LeafLabel" type="Label" parent="Root/TopBar"]
+theme_override_font_sizes/font_size = 28
 text = "🌿 0"
 
 [node name="WoodLabel" type="Label" parent="Root/TopBar"]
+theme_override_font_sizes/font_size = 28
 text = "🪵 0"
 
 [node name="MoneyLabel" type="Label" parent="Root/TopBar"]
+theme_override_font_sizes/font_size = 28
 text = "💰 150"
 
 [node name="DayLabel" type="Label" parent="Root/TopBar"]
+theme_override_font_sizes/font_size = 28
 text = "Day 1"
 
 [node name="RatingLabel" type="Label" parent="Root/TopBar"]
+theme_override_font_sizes/font_size = 28
 text = "⭐ 0.0"
 
 [node name="NetLabel" type="Label" parent="Root/TopBar"]
+theme_override_font_sizes/font_size = 28
 text = "+0/day"
 
 [node name="DifficultyLabel" type="Label" parent="Root/TopBar"]
+theme_override_font_sizes/font_size = 28
 text = "⚖️ Normal"
 
 [node name="Gauges" type="VBoxContainer" parent="Root"]
@@ -46,6 +53,7 @@ offset_bottom = 310.0
 mouse_filter = 2
 
 [node name="StaffLabel" type="Label" parent="Root/Gauges"]
+theme_override_font_sizes/font_size = 22
 text = "Staff"
 
 [node name="StaffGauge" type="ProgressBar" parent="Root/Gauges"]
@@ -54,6 +62,7 @@ max_value = 6.0
 value = 0.0
 
 [node name="PowerLabel" type="Label" parent="Root/Gauges"]
+theme_override_font_sizes/font_size = 22
 text = "Power"
 
 [node name="PowerGauge" type="ProgressBar" parent="Root/Gauges"]
@@ -62,6 +71,7 @@ max_value = 6.0
 value = 0.0
 
 [node name="WaterLabel" type="Label" parent="Root/Gauges"]
+theme_override_font_sizes/font_size = 22
 text = "Water"
 
 [node name="WaterGauge" type="ProgressBar" parent="Root/Gauges"]
@@ -79,51 +89,63 @@ theme_override_constants/separation = 4
 
 [node name="StormRepairBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(148, 56)
+theme_override_font_sizes/font_size = 24
 text = "🔧 Repair"
 visible = false
 
 [node name="ReclaimBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(134, 56)
+theme_override_font_sizes/font_size = 24
 text = "🏝 Reclaim"
 
 [node name="ForageBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(100, 56)
+theme_override_font_sizes/font_size = 24
 text = "Forage"
 
 [node name="HutBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(70, 56)
+theme_override_font_sizes/font_size = 24
 text = "Hut"
 
 [node name="BungBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(78, 56)
+theme_override_font_sizes/font_size = 24
 text = "Bung"
 
 [node name="VillaBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(78, 56)
+theme_override_font_sizes/font_size = 24
 text = "Villa"
 
 [node name="JettyBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(78, 56)
+theme_override_font_sizes/font_size = 24
 text = "Jetty"
 
 [node name="RestBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(74, 56)
+theme_override_font_sizes/font_size = 24
 text = "Rest"
 
 [node name="GenBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(68, 56)
+theme_override_font_sizes/font_size = 24
 text = "Gen"
 
 [node name="SolarBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(84, 56)
+theme_override_font_sizes/font_size = 24
 text = "Solar"
 
 [node name="DesalBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(84, 56)
+theme_override_font_sizes/font_size = 24
 text = "Desal"
 
 [node name="RunwayBtn" type="Button" parent="Root/BuildDock"]
 custom_minimum_size = Vector2(94, 56)
+theme_override_font_sizes/font_size = 24
 text = "Runway"
 
 [node name="ReviewFeed" type="ScrollContainer" parent="Root"]
@@ -144,6 +166,7 @@ anchor_left = 0.15
 anchor_right = 0.85
 offset_top = 70.0
 offset_bottom = 118.0
+theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
 
 [node name="BloggerLabel" type="Label" parent="Root"]
@@ -151,6 +174,7 @@ anchor_left = 0.15
 anchor_right = 0.85
 offset_top = 125.0
 offset_bottom = 173.0
+theme_override_font_sizes/font_size = 26
 horizontal_alignment = 1
 visible = false
 text = "✨ Blogger surge!"

@@ -25,8 +25,10 @@ offset_bottom = 140.0
 
 [node name="ZoomIn" type="Button" parent="ZoomButtons/VBox"]
 custom_minimum_size = Vector2(90, 56)
+theme_override_font_sizes/font_size = 28
 text = "+"
 
 [node name="ZoomOut" type="Button" parent="ZoomButtons/VBox"]
 custom_minimum_size = Vector2(90, 56)
+theme_override_font_sizes/font_size = 28
 text = "-"

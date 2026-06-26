@@ -26,6 +26,7 @@ theme_override_constants/separation = 12
 
 [node name="Body" type="Label" parent="Root/Panel"]
 autowrap_mode = 3
+theme_override_font_sizes/font_size = 26
 text = ""
 horizontal_alignment = 1
 
@@ -35,17 +36,21 @@ theme_override_constants/separation = 8
 
 [node name="EasyBtn" type="Button" parent="Root/Panel/DiffRow"]
 custom_minimum_size = Vector2(110, 52)
+theme_override_font_sizes/font_size = 26
 text = "😊 Easy"
 
 [node name="NormBtn" type="Button" parent="Root/Panel/DiffRow"]
 custom_minimum_size = Vector2(125, 52)
+theme_override_font_sizes/font_size = 26
 text = "⚖️ Normal"
 modulate = Color(0, 0.8, 0, 1)
 
 [node name="HardBtn" type="Button" parent="Root/Panel/DiffRow"]
 custom_minimum_size = Vector2(110, 52)
+theme_override_font_sizes/font_size = 26
 text = "💀 Hard"
 
 [node name="NextBtn" type="Button" parent="Root/Panel"]
 custom_minimum_size = Vector2(155, 52)
+theme_override_font_sizes/font_size = 26
 text = "Next →"
