@@ -107,6 +107,16 @@ custom_minimum_size = Vector2(100, 56)
 theme_override_font_sizes/font_size = 24
 text = "Forage"
 
+[node name="HireBtn" type="Button" parent="Root/DockWrapper/ActionRow"]
+custom_minimum_size = Vector2(80, 56)
+theme_override_font_sizes/font_size = 24
+text = "Hire"
+
+[node name="FireBtn" type="Button" parent="Root/DockWrapper/ActionRow"]
+custom_minimum_size = Vector2(70, 56)
+theme_override_font_sizes/font_size = 24
+text = "Fire"
+
 [node name="NewGameBtn" type="Button" parent="Root/DockWrapper/ActionRow"]
 custom_minimum_size = Vector2(120, 56)
 theme_override_font_sizes/font_size = 24

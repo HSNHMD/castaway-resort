@@ -17,6 +17,9 @@ const _DOCK_KEY_BTN := {
 @onready var _day_lbl:         Label        = $Root/TopBar/DayLabel
 @onready var _rating_lbl:      Label        = $Root/TopBar/RatingLabel
 @onready var _net_lbl:         Label        = $Root/TopBar/NetLabel
+@onready var _staff_lbl:       Label        = $Root/Gauges/StaffLabel
+@onready var _hire_btn:        Button       = $Root/DockWrapper/ActionRow/HireBtn
+@onready var _fire_btn:        Button       = $Root/DockWrapper/ActionRow/FireBtn
 @onready var _staff_bar:       ProgressBar  = $Root/Gauges/StaffGauge
 @onready var _power_bar:       ProgressBar  = $Root/Gauges/PowerGauge
 @onready var _water_bar:       ProgressBar  = $Root/Gauges/WaterGauge
@@ -74,6 +77,10 @@ func _on_state_changed() -> void:
 	_net_lbl.modulate = Color.GREEN if net >= 0.0 else Color.RED
 
 	_diff_lbl.text = _DIFF_LABELS[clampi(_game.difficulty, 0, 2)]
+
+	_staff_lbl.text      = "Staff: %d ($%d/day)" % [s.staff, s.staff * 12]
+	_hire_btn.disabled   = s.money < 20.0
+	_fire_btn.disabled   = s.staff == 0
 
 	var c := s.caps()
 	_update_gauge(_staff_bar, c["staff_load"],  c["staff_cap"])
@@ -186,6 +193,8 @@ func _connect_dock() -> void:
 	_reclaim_btn.pressed.connect(_on_reclaim_pressed)
 	_new_game_btn.pressed.connect(_on_new_game_pressed)
 	$Root/DockWrapper/ActionRow/ForageBtn.pressed.connect(_on_forage_pressed)
+	_hire_btn.pressed.connect(_on_hire_pressed)
+	_fire_btn.pressed.connect(_on_fire_pressed)
 
 	var dock := $Root/DockWrapper/BuildRow
 	for key in _DOCK_KEY_BTN:
@@ -206,6 +215,16 @@ func _on_new_game_pressed() -> void:
 	if _audio:
 		_audio.play_ui()
 	_game.restart_to_tutorial()
+
+func _on_hire_pressed() -> void:
+	if _audio:
+		_audio.play_ui()
+	_game.hire()
+
+func _on_fire_pressed() -> void:
+	if _audio:
+		_audio.play_ui()
+	_game.fire()
 
 func _on_reclaim_pressed() -> void:
 	if _audio:

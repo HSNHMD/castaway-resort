@@ -18,6 +18,7 @@ var _dragging       := false   # desktop left-mouse held
 
 # two-finger state
 var _touches: Dictionary = {}  # finger index -> Vector2
+var _num_touches      := 0     # authoritative press count (avoids ScreenDrag race condition)
 var _prev_pinch_dist  := 0.0
 var _prev_pan_center  := Vector2.ZERO
 
@@ -35,8 +36,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	# ── touch ─────────────────────────────────────────────
 	if event is InputEventScreenTouch:
 		if event.pressed:
+			_num_touches += 1
 			_touches[event.index] = event.position
+			if _num_touches == 2:
+				_prev_pinch_dist = 0.0   # fresh start for each new pinch gesture
 		else:
+			_num_touches = max(0, _num_touches - 1)
 			_touches.erase(event.index)
 			_prev_pinch_dist = 0.0
 		return
@@ -44,10 +49,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenDrag:
 		_touches[event.index] = event.position
 
-		if _touches.size() == 1 and not _dragging:
+		if _num_touches <= 1 and not _dragging:
 			_orbit(event.relative)
 
-		elif _touches.size() == 2:
+		elif _num_touches >= 2 and _touches.size() >= 2:
 			var keys: Array = _touches.keys()
 			keys.sort()
 			var pa: Vector2 = _touches[keys[0]]
