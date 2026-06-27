@@ -52,11 +52,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		if _num_touches <= 1 and not _dragging:
 			_orbit(event.relative)
 
-		elif _num_touches >= 2 and _touches.size() >= 2:
-			var keys: Array = _touches.keys()
-			keys.sort()
-			var pa: Vector2 = _touches[keys[0]]
-			var pb: Vector2 = _touches[keys[1]]
+		elif _num_touches >= 2:
+			var vals: Array = _touches.values()
+			var pa: Vector2 = vals[0]
+			var pb: Vector2 = vals[1]
 			var dist  := pa.distance_to(pb)
 			var center := (pa + pb) * 0.5
 

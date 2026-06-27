@@ -79,7 +79,7 @@ func _on_state_changed() -> void:
 	_diff_lbl.text = _DIFF_LABELS[clampi(_game.difficulty, 0, 2)]
 
 	_staff_lbl.text      = "Staff: %d ($%d/day)" % [s.staff, s.staff * 12]
-	_hire_btn.disabled   = s.money < 20.0
+	_hire_btn.disabled   = s.money < Simulation.HIRE_COST
 	_fire_btn.disabled   = s.staff == 0
 
 	var c := s.caps()
@@ -193,8 +193,8 @@ func _connect_dock() -> void:
 	_reclaim_btn.pressed.connect(_on_reclaim_pressed)
 	_new_game_btn.pressed.connect(_on_new_game_pressed)
 	$Root/DockWrapper/ActionRow/ForageBtn.pressed.connect(_on_forage_pressed)
-	_hire_btn.pressed.connect(_on_hire_pressed)
-	_fire_btn.pressed.connect(_on_fire_pressed)
+	_hire_btn.pressed.connect(func(): _ui_press(_game.hire))
+	_fire_btn.pressed.connect(func(): _ui_press(_game.fire))
 
 	var dock := $Root/DockWrapper/BuildRow
 	for key in _DOCK_KEY_BTN:
@@ -216,15 +216,10 @@ func _on_new_game_pressed() -> void:
 		_audio.play_ui()
 	_game.restart_to_tutorial()
 
-func _on_hire_pressed() -> void:
+func _ui_press(fn: Callable) -> void:
 	if _audio:
 		_audio.play_ui()
-	_game.hire()
-
-func _on_fire_pressed() -> void:
-	if _audio:
-		_audio.play_ui()
-	_game.fire()
+	fn.call()
 
 func _on_reclaim_pressed() -> void:
 	if _audio:
