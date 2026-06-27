@@ -108,9 +108,9 @@ theme_override_font_sizes/font_size = 24
 text = "Forage"
 
 [node name="HireBtn" type="Button" parent="Root/DockWrapper/ActionRow"]
-custom_minimum_size = Vector2(80, 56)
+custom_minimum_size = Vector2(106, 56)
 theme_override_font_sizes/font_size = 24
-text = "Hire"
+text = "Hire $20"
 
 [node name="FireBtn" type="Button" parent="Root/DockWrapper/ActionRow"]
 custom_minimum_size = Vector2(70, 56)
