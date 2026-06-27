@@ -60,6 +60,8 @@ func try_place(key: String, x: float, z: float, meta := {}) -> Dictionary:
 
 func hire() -> bool:
 	var ok := sim.hire()
+	if ok and sim.last_net - Simulation.WAGE < 0.0:
+		toast_shown.emit("⚠️ Wages now exceed income — you'll lose money each day.")
 	state_changed.emit()
 	return ok
 
