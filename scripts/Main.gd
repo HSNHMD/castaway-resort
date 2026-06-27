@@ -55,6 +55,8 @@ func forage() -> Dictionary:
 func try_place(key: String, x: float, z: float, meta := {}) -> Dictionary:
 	var res := sim.place(key, x, z, meta)
 	if res["ok"]:
+		if key == "runway":
+			toast_shown.emit("✈️ Your runway opens — the island is on the map.")
 		state_changed.emit()
 	return res   # caller inspects res.ok / res.reason / res.placed to spawn the model
 
