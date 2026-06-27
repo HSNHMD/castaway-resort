@@ -34,6 +34,7 @@ var _audio:          AudioManager
 var _toast_t:        float = 0.0
 var _prev_reclaimed: int   = 0
 var _build_btns:     Dictionary = {}   # key String -> Button
+var _floater_count:  int   = 0
 
 func _ready() -> void:
 	_game      = get_parent() as Game
@@ -47,6 +48,7 @@ func _ready() -> void:
 	_game.state_changed.connect(_on_state_changed)
 	_game.reviews_posted.connect(_on_reviews_posted)
 	_game.toast_shown.connect(_on_toast_shown)
+	_game.income_earned.connect(_on_income_earned)
 
 	_connect_dock()
 	_toast_lbl.visible   = false
@@ -131,14 +133,21 @@ func _get_building_btn(key: String) -> Button:
 	return null
 
 func _on_reviews_posted(reviews: Array) -> void:
-	for r in reviews:
+	for i in reviews.size():
+		var r: Dictionary = reviews[i]
 		var kind: String = r.get("kind", "")
 		var prefix := "👍" if kind == "good" else ("📢" if kind == "evt" else "👎")
 		var lbl := Label.new()
 		lbl.text          = "%s %s: %s" % [prefix, r.get("name", ""), r.get("msg", "")]
 		lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		lbl.add_theme_font_size_override("font_size", 22)
+		lbl.modulate      = Color(1, 1, 1, 0)
+		lbl.position.y    = 12.0
 		_review_list.add_child(lbl)
+		var t := create_tween().set_parallel(true)
+		t.tween_property(lbl, "modulate:a", 1.0, 0.25).set_delay(i * 0.06)
+		t.tween_property(lbl, "position:y",  0.0, 0.25).set_delay(i * 0.06)\
+			.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 
 	while _review_list.get_child_count() > MAX_REVIEWS:
 		_review_list.get_child(0).queue_free()
@@ -146,6 +155,26 @@ func _on_reviews_posted(reviews: Array) -> void:
 	await get_tree().process_frame
 	var scroll := _review_list.get_parent() as ScrollContainer
 	scroll.scroll_vertical = int(scroll.get_v_scroll_bar().max_value)
+
+func _on_income_earned(amount: float) -> void:
+	if _floater_count >= 5:
+		return
+	_floater_count += 1
+	var lbl := Label.new()
+	lbl.text = "+$%d" % int(amount)
+	lbl.add_theme_font_size_override("font_size", 30)
+	lbl.add_theme_color_override("font_color", Color(0.3, 0.95, 0.45))
+	lbl.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.5))
+	lbl.add_theme_constant_override("shadow_offset_x", 1)
+	lbl.add_theme_constant_override("shadow_offset_y", 1)
+	var anchor := _money_lbl.get_screen_position()
+	lbl.position = anchor + Vector2(randf_range(-20.0, 20.0), -8.0)
+	$Root.add_child(lbl)
+	var t := create_tween().set_parallel(true)
+	t.tween_property(lbl, "position:y", lbl.position.y - 64.0, 1.2)\
+		.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	t.tween_property(lbl, "modulate:a", 0.0, 1.2).set_delay(0.3)
+	t.tween_callback(func(): _floater_count -= 1; lbl.queue_free()).set_delay(1.2)
 
 func _on_toast_shown(text: String) -> void:
 	_toast_lbl.text    = text

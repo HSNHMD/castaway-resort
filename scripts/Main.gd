@@ -10,6 +10,7 @@ extends Node3D
 signal state_changed                       # fire after anything changes; HUD repaints
 signal reviews_posted(reviews: Array)      # new guest reviews this tick
 signal toast_shown(text: String)           # milestone / event banners
+signal income_earned(amount: float)        # positive income this tick, for floating numbers
 
 const SAVE_PATH := "user://save.json"
 @export var autosave_every_ticks := 10
@@ -37,6 +38,8 @@ func _on_tick() -> void:
 		reviews_posted.emit(res["reviews"])
 	for m in res["toasts"]:
 		toast_shown.emit(m)
+	if (res["income"] as float) > 0.0:
+		income_earned.emit(res["income"] as float)
 	_ticks_since_save += 1
 	if _ticks_since_save >= autosave_every_ticks:
 		save()
