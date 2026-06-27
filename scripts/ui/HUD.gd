@@ -30,6 +30,7 @@ const _DOCK_KEY_BTN := {
 
 var _game:           Game
 var _placement:      Placement
+var _audio:          AudioManager
 var _toast_t:        float = 0.0
 var _prev_reclaimed: int   = 0
 var _build_btns:     Dictionary = {}   # key String -> Button
@@ -37,6 +38,7 @@ var _build_btns:     Dictionary = {}   # key String -> Button
 func _ready() -> void:
 	_game      = get_parent() as Game
 	_placement = get_node("../Placement") as Placement
+	_audio     = get_node_or_null("../AudioManager") as AudioManager
 
 	var t := Theme.new()
 	t.default_font_size = 28
@@ -153,8 +155,8 @@ func _on_toast_shown(text: String) -> void:
 func _connect_dock() -> void:
 	_storm_btn.pressed.connect(func(): _game.repair_storm())
 	_reclaim_btn.pressed.connect(_on_reclaim_pressed)
-	_new_game_btn.pressed.connect(func(): _game.restart_to_tutorial())
-	$Root/DockWrapper/ActionRow/ForageBtn.pressed.connect(func(): _game.forage())
+	_new_game_btn.pressed.connect(_on_new_game_pressed)
+	$Root/DockWrapper/ActionRow/ForageBtn.pressed.connect(_on_forage_pressed)
 
 	var dock := $Root/DockWrapper/BuildRow
 	for key in _DOCK_KEY_BTN:
@@ -166,7 +168,19 @@ func _on_build_btn_pressed(key: String) -> void:
 	_placement.selected_key = key
 	_refresh_build_highlights()
 
+func _on_forage_pressed() -> void:
+	if _audio:
+		_audio.play_forage()
+	_game.forage()
+
+func _on_new_game_pressed() -> void:
+	if _audio:
+		_audio.play_ui()
+	_game.restart_to_tutorial()
+
 func _on_reclaim_pressed() -> void:
+	if _audio:
+		_audio.play_ui()
 	var ok := _game.reclaim()
 	if not ok:
 		_on_toast_shown("Not enough money to reclaim land.")
